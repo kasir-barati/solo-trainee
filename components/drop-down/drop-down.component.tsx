@@ -9,6 +9,7 @@ export function DropDown(
             theme="DARK"
             style={{ borderColor: 'white', borderRadius: 4 }}
             {...props}
+            placeholderStyle={{ color: 'white' }}
         />
     );
 }
