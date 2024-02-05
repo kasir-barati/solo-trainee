@@ -1,12 +1,13 @@
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
+import { Wrapper } from '../../components/wrapper/wrapper.component';
 import { useAppSelector } from '../../shared/store';
 
 export function Home() {
     const user = useAppSelector((state) => state.user);
 
     return (
-        <View>
-            <Text>{user.name}</Text>
-        </View>
+        <Wrapper>
+            <Text className="text-white">{user.name}</Text>
+        </Wrapper>
     );
 }

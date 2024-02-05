@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import type { TypedUseSelectorHook } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerSlice } from '../screens/register/register.slice';
+import { userSlice } from '../components/user-info/user.slice';
 
 export const store = configureStore({
     reducer: {
-        user: registerSlice.reducer,
+        user: userSlice.reducer,
     },
 });
 

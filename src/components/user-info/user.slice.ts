@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../../shared/types';
 
-export const registerSlice = createSlice({
+export const userSlice = createSlice({
     initialState: {} as User,
-    name: 'register',
+    name: 'user',
     reducers: {
         getUser(state) {
             return state;
@@ -18,4 +18,4 @@ export const registerSlice = createSlice({
     },
 });
 
-export const { getUser, setUser } = registerSlice.actions;
+export const { getUser, setUser } = userSlice.actions;
