@@ -8,3 +8,4 @@
 # Pitfalls
 
 1. We cannot use pnpm as our package manager :poop:
+2. We do not have CSS, it is similar to CSS but not exactly CSS
