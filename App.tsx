@@ -1,10 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Provider } from 'react-redux';
-import { Home } from './app/screens/home/home';
-import { Register } from './app/screens/register/register.screen';
 import './global.css';
-import { store } from './shared/store';
+import { Home } from './src/screens/home/home';
+import { Register } from './src/screens/register/register.screen';
+import { store } from './src/shared/store';
 
 const Stack = createNativeStackNavigator();
 

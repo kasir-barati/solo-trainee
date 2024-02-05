@@ -1,15 +1,15 @@
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
 import { Alert, Image, View } from 'react-native';
-import logo from '../../../assets/logo.png';
-import { DropDown } from '../../../components/drop-down/drop-down.component';
-import { Loading } from '../../../components/loading/loading.component';
-import { PrimaryButton } from '../../../components/primary-button/primary-button.component';
-import { SecondaryButton } from '../../../components/secondary-button/secondary-button.component';
-import { TextInput } from '../../../components/text-input/text-input';
-import { getData, storeData } from '../../../shared/async-store';
-import { useAppDispatch } from '../../../shared/store';
-import { User } from '../../../shared/types';
+import logo from '../../assets/logo.png';
+import { DropDown } from '../../components/drop-down/drop-down.component';
+import { Loading } from '../../components/loading/loading.component';
+import { PrimaryButton } from '../../components/primary-button/primary-button.component';
+import { SecondaryButton } from '../../components/secondary-button/secondary-button.component';
+import { TextInput } from '../../components/text-input/text-input';
+import { getData, storeData } from '../../shared/async-store';
+import { useAppDispatch } from '../../shared/store';
+import { User } from '../../shared/types';
 import { setUser } from './register.slice';
 
 export function Register() {
