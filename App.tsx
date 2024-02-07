@@ -3,6 +3,7 @@ import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
+import ErrorBoundary from 'react-native-error-boundary';
 import { Provider } from 'react-redux';
 import './global.css';
 import { Home } from './src/screens/home/home';
@@ -21,40 +22,42 @@ export default function App() {
     }, [isUserRegistered]);
 
     return (
-        <Provider store={store}>
-            {/* TODO: Improve drawer theme */}
-            <NavigationContainer
-                theme={{
-                    dark: true,
-                    colors: {
-                        background: 'black',
-                        border: 'white',
-                        card: 'white',
-                        notification: 'black',
-                        primary: 'black',
-                        text: 'black',
-                    },
-                }}
-            >
-                <Drawer.Navigator initialRouteName="Register">
-                    <Drawer.Screen name="Home" component={Home} />
-                    <Drawer.Screen
-                        name="Profile"
-                        component={Profile}
-                    />
-                    <Drawer.Screen
-                        name="Register"
-                        component={Register}
-                        options={{
-                            drawerItemStyle: {
-                                display: isUserRegistered
-                                    ? 'none'
-                                    : 'flex',
-                            },
-                        }}
-                    />
-                </Drawer.Navigator>
-            </NavigationContainer>
-        </Provider>
+        <ErrorBoundary>
+            <Provider store={store}>
+                {/* TODO: Improve drawer theme */}
+                <NavigationContainer
+                    theme={{
+                        dark: true,
+                        colors: {
+                            background: 'black',
+                            border: 'white',
+                            card: 'white',
+                            notification: 'black',
+                            primary: 'black',
+                            text: 'black',
+                        },
+                    }}
+                >
+                    <Drawer.Navigator initialRouteName="Register">
+                        <Drawer.Screen name="Home" component={Home} />
+                        <Drawer.Screen
+                            name="Profile"
+                            component={Profile}
+                        />
+                        <Drawer.Screen
+                            name="Register"
+                            component={Register}
+                            options={{
+                                drawerItemStyle: {
+                                    display: isUserRegistered
+                                        ? 'none'
+                                        : 'flex',
+                                },
+                            }}
+                        />
+                    </Drawer.Navigator>
+                </NavigationContainer>
+            </Provider>
+        </ErrorBoundary>
     );
 }

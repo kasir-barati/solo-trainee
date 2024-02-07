@@ -3,7 +3,7 @@ import { View } from 'react-native';
 
 export function Wrapper({ children }: PropsWithChildren) {
     return (
-        <View className=" flex h-full items-center justify-center">
+        <View className="flex h-full items-center justify-center">
             {children}
         </View>
     );

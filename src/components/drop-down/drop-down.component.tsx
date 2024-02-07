@@ -6,10 +6,16 @@ export function DropDown(
 ) {
     return (
         <DropDownPicker
-            theme="DARK"
-            style={{ borderColor: 'white', borderRadius: 4 }}
+            style={{
+                borderColor: 'gray',
+                backgroundColor: 'transparent',
+            }}
             {...props}
             placeholderStyle={{ color: 'white' }}
+            labelStyle={{ color: 'white' }}
+            dropDownContainerStyle={{
+                backgroundColor: 'gray',
+            }}
         />
     );
 }
