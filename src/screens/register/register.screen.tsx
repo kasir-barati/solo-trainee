@@ -6,11 +6,7 @@ import { Loading } from '../../components/loading/loading.component';
 import { UserInfo } from '../../components/user-info/user-info.component';
 import { setUser } from '../../components/user-info/user.slice';
 import { Wrapper } from '../../components/wrapper/wrapper.component';
-import {
-    deleteData,
-    getData,
-    storeData,
-} from '../../shared/async-store';
+import { getData, storeData } from '../../shared/async-store';
 import { useAppDispatch } from '../../shared/store';
 import { User } from '../../shared/types';
 
@@ -25,8 +21,7 @@ export function Register() {
     }
 
     useEffect(() => {
-        deleteData('user-data')
-            .then(() => getData('user-data'))
+        getData('user-data')
             .then((data) => {
                 if (!data) {
                     setLoadingUserData(false);
