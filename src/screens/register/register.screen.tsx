@@ -6,7 +6,11 @@ import { Loading } from '../../components/loading/loading.component';
 import { UserInfo } from '../../components/user-info/user-info.component';
 import { setUser } from '../../components/user-info/user.slice';
 import { Wrapper } from '../../components/wrapper/wrapper.component';
-import { getData, storeData } from '../../shared/async-store';
+import {
+    deleteData,
+    getData,
+    storeData,
+} from '../../shared/async-store';
 import { useAppDispatch } from '../../shared/store';
 import { User } from '../../shared/types';
 
@@ -21,15 +25,23 @@ export function Register() {
     }
 
     useEffect(() => {
-        getData('user-data').then((data) => {
-            if (!data) {
-                setLoadingUserData(false);
-                return;
-            }
+        deleteData('user-data')
+            .then(() => getData('user-data'))
+            .then((data) => {
+                if (!data) {
+                    setLoadingUserData(false);
+                    return;
+                }
 
-            dispatch(setUser(data as User));
-            navigation.navigate('Home');
-        });
+                dispatch(setUser(data as User));
+                // BUG, but why?
+                navigation.navigate('Home');
+            })
+            .catch(
+                console.error.bind(
+                    'An error occurred while getting data',
+                ),
+            );
     }, [loadingUserData]);
 
     if (loadingUserData) {
