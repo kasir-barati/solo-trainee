@@ -30,7 +30,7 @@ export function Register() {
                 }
 
                 dispatch(setUser(data as User));
-                // BUG, but why?
+                // FIXME: This line is causing issue
                 navigation.navigate('Home');
             })
             .catch(
