@@ -11,68 +11,62 @@ export function UserInfo({ onSave, onCancel }: UserInfoProps) {
     const user = useAppSelector((state) => state.user);
     const [open, setOpen] = useState(false);
     const [sex, setSex] = useState<User['sex'] | null>(
-        user?.sex ?? null,
+        user?.sex ?? 'female',
     );
-    const [items, setItems] = useState([
+    const [items, setItems] = useState<
+        { label: string; value: User['sex'] }[]
+    >([
         { label: 'Male', value: 'male' },
         { label: 'Female', value: 'female' },
         { label: 'Non-Binary', value: 'non-binary' },
     ]);
-    const [userData, setUserData] = useState<User | null>(
-        user ?? null,
-    );
-    function changeUserName(name: string) {
-        setUserData({
-            ...userData!,
-            name,
-        });
+    const [age, setAge] = useState<number>();
+    const [name, setName] = useState<string>();
+    const [weight, setWeight] = useState<number>();
+    const [height, setHeight] = useState<number>();
+    function changeNameHandler(name: string) {
+        setName(name);
     }
-    function changeUserAge(age: string) {
-        setUserData({
-            ...userData!,
-            age: Number(age),
-        });
+    function changeAgeHandler(age: string) {
+        setAge(Number(age));
     }
-    function changeUserWeight(weight: string) {
-        setUserData({
-            ...userData!,
-            weight: Number(weight),
-        });
+    function changeWeightHandler(weight: string) {
+        setWeight(Number(weight));
     }
-    function changeUserHeight(height: string) {
-        setUserData({
-            ...userData!,
-            height: Number(height),
-        });
+    function changeHeightHandler(height: string) {
+        setHeight(Number(height));
     }
     async function saveHandler() {
         if (!sex) {
             Alert.alert('Please specify your sex');
             return;
         }
-        if (!userData?.age) {
+        if (!age) {
             Alert.alert('Please specify your age');
             return;
         }
-        if (!userData?.name) {
+        if (!name) {
             Alert.alert('Please specify your name');
             return;
         }
-        if (!userData?.height) {
+        if (!height) {
             Alert.alert('Please specify your height');
             return;
         }
-        if (!userData?.weight) {
+        if (!weight) {
             Alert.alert('Please specify your weight');
             return;
         }
 
-        await onSave({ ...userData, sex });
+        await onSave({ age, name, weight, height, sex });
     }
     function cancelHandler() {
         // FIXME: On profile screen it redirects user to home but when I navigate back to this screen it won't reinitiate this screen, userData is undefined.
-        setUserData(null);
         setSex(null);
+        setAge(undefined);
+        setName(undefined);
+        setWeight(undefined);
+        setHeight(undefined);
         onCancel && onCancel();
     }
 
@@ -81,38 +75,26 @@ export function UserInfo({ onSave, onCancel }: UserInfoProps) {
             <TextInput
                 placeholder="Name"
                 keyboardType="default"
-                onChangeText={changeUserName}
-                value={userData?.name}
+                onChangeText={changeNameHandler}
+                value={name}
             />
             <TextInput
                 placeholder="Age"
                 keyboardType="number-pad"
-                onChangeText={changeUserAge}
-                value={
-                    userData?.age !== undefined
-                        ? String(userData.age)
-                        : undefined
-                }
+                onChangeText={changeAgeHandler}
+                value={age?.toString()}
             />
             <TextInput
                 placeholder="Weight"
                 keyboardType="number-pad"
-                onChangeText={changeUserWeight}
-                value={
-                    userData?.weight !== undefined
-                        ? String(userData.weight)
-                        : undefined
-                }
+                onChangeText={changeWeightHandler}
+                value={weight?.toString()}
             />
             <TextInput
                 placeholder="Height"
                 keyboardType="number-pad"
-                onChangeText={changeUserHeight}
-                value={
-                    userData?.height !== undefined
-                        ? String(userData.height)
-                        : undefined
-                }
+                onChangeText={changeHeightHandler}
+                value={height?.toString()}
             />
             <DropDown
                 open={open}

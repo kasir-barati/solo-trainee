@@ -17,6 +17,7 @@ export function Register() {
     async function saveHandler(user: User) {
         dispatch(setUser(user));
         await storeData('user-data', user);
+        // FIXME: This line is causing issue
         navigation.navigate('Home');
     }
 

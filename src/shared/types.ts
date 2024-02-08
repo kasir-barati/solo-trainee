@@ -3,7 +3,7 @@ export interface User {
     name: string;
     weight: number;
     height: number;
-    sex: '';
+    sex: 'male' | 'female' | 'non-binary';
 }
 
 export type RootStack = {
